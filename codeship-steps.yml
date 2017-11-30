@@ -1,0 +1,3 @@
+- name: benchmark
+  service: beamup_codeship
+  command: /benchmark/run.sh
