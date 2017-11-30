@@ -1,6 +1,9 @@
-sudo: required
-
 dist: trusty
+sudo: false
+
+include:
+  - dist: trusty
+    sudo: required
 
 services:
   - docker
