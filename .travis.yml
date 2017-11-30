@@ -1,7 +1,6 @@
-dist: trusty
-sudo: false
-env:
-  - BEAMUP_BENCHMARK=TRAVIS_CONTAINER
+language: erlang
+otp_release:
+  - 20.1.2
 
 jobs:
   include:
@@ -17,6 +16,8 @@ jobs:
       services:
         - docker
 
+install:
+  - "true"
 
 before_script:
   - export PATH=$HOME/.beamup/cli/:$PATH
