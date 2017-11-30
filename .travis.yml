@@ -5,5 +5,8 @@ dist: trusty
 services:
   - docker
 
+before_script:
+  - export PATH=$HOME/.beamup/cli/:$PATH
+
 script:
   - ./run.sh
