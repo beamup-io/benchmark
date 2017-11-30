@@ -1,13 +1,12 @@
-language: erlang
-otp_release:
-  - 20.1.2
-
 jobs:
   include:
     - stage: Container
       dist: trusty
       sudo: false
       env: BEAMUP_BENCHMARK=TRAVIS_CONTAINER
+      language: erlang
+      otp_release:
+        - 20.1.2
 
     - stage: VM
       dist: trusty
