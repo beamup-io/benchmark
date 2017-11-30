@@ -1,9 +1,7 @@
 dist: trusty
-sudo: false
-
-include:
-  - dist: trusty
-    sudo: required
+sudo:
+  - required
+  - false
 
 services:
   - docker
