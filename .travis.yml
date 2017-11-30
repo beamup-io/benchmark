@@ -1,11 +1,13 @@
 dist: trusty
 sudo: false
+env: BEAMUP_BENCHMARK=TRAVIS_CONTAINER
 
 jobs:
   include:
     - stage: VM
       dist: trusty
       sudo: required
+      env: BEAMUP_BENCHMARK=TRAVIS_VM
       services:
         - docker
 
