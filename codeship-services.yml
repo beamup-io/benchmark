@@ -2,6 +2,6 @@ version: '2'
 
 services:
   beamup_codeship:
-    image: erlang/20.1.2
+    image: amd64/erlang:20.1.2
     volumes:
       - .:/benchmark
