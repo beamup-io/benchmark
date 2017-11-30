@@ -1,10 +1,12 @@
 dist: trusty
 sudo: false
 
-matrix:
+jobs:
   include:
-    - dist: trusty
+    - stage: VM
+      dist: trusty
       sudo: required
+
 
 services:
   - docker
