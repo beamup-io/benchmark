@@ -6,10 +6,9 @@ jobs:
     - stage: VM
       dist: trusty
       sudo: required
+      services:
+        - docker
 
-
-services:
-  - docker
 
 before_script:
   - export PATH=$HOME/.beamup/cli/:$PATH
