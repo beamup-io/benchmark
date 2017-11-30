@@ -1,7 +1,10 @@
 dist: trusty
-sudo:
-  - required
-  - false
+sudo: false
+
+matrix:
+  include:
+    - dist: trusty
+      sudo: required
 
 services:
   - docker
