@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/', (req, res) => {
   handle(req.body)
-  res.send('ok')
+  res.send('ok\n')
 })
 
 app.listen(PORT, () =>
@@ -21,9 +21,11 @@ app.listen(PORT, () =>
 )
 
 const handle = payload => {
-  state = [payload, ...state]
+  const time = parseFloat(payload.time)
+  const result = Object.assign(payload, { time })
+  state = [result, ...state]
 
-  console.log(payload)
+  console.log(result)
 
   fs.writeFile(RESULTS_FILE, JSON.stringify(state, null, 2), err => err && console.error(err))
 }
