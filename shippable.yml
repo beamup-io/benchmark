@@ -1,0 +1,9 @@
+build:
+  pre_ci_boot:
+    image_name: amd64/erlang:20.1.2
+    image_tag: latest
+    pull: true
+    options: "-e HOME=/root"
+
+  ci:
+    - PATH=$HOME/.beamup/cli:$PATH ./run.sh
