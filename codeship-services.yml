@@ -5,3 +5,5 @@ services:
     image: amd64/erlang:20.1.2
     volumes:
       - .:/benchmark
+    environment:
+      BENCHMARK_SUBJECT: CodeshipPro
