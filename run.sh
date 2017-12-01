@@ -2,8 +2,11 @@
 
 set -e
 
+# Increment before each push
+benchmark_revision=2
+
 BENCHMARK_URL=http://163.172.147.195:8080
-benchmark_revision=1
+
 
 start_time=""
 
@@ -12,8 +15,11 @@ main () {
   curl https://get.beamup.io/install | /bin/sh
   end "install"
 
+  beamup new test_erlang_one
+  cd test_erlang_one
+
   start "full_build_without_cache"
-  BEAMUP_STORE='/root/.beamup-store' beamup build
+  BEAMUP_STORE='$HOME/.beamup-store' beamup build
   end "full_build_without_cache"
 }
 
@@ -21,18 +27,18 @@ main () {
 
 start () {
   echo "### Start '$1'"
-  start_time=$(date +%s.%N)
+  start_time=$(date +%s%3N)
 }
 
 end () {
-  end_time=$(date +%s.%N)
-  diff=$(echo "$end_time - $start_time" | bc)
-  echo "### Finished '$1' took $diff"
+  end_time=$(date +%s%3N)
+  diff_ms=$(($end_time - $start_time))
+  echo "### Finished '$1' took $diff_ms ms"
 
   result="revision=$benchmark_revision"
   result="$result&subject=$BENCHMARK_SUBJECT"
   result="$result&step=$1"
-  result="$result&time=$diff"
+  result="$result&time=$diff_ms"
 
   curl -X POST -d "$result" $BENCHMARK_URL
 }
