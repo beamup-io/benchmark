@@ -15,6 +15,11 @@ jobs:
       env: BENCHMARK_SUBJECT=TravisVM
       services:
         - docker
+      script:
+        # Cache image to be comparable with builds
+        # running in container
+        - docker pull amd64/erlang:20.1.2
+        - ./run.sh
 
 install:
   - "true"
