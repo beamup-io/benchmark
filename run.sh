@@ -22,7 +22,7 @@ main () {
   cd test_erlang_one
 
   start "full_build_without_cache"
-  BEAMUP_STORE='$HOME/.beamup-store' beamup build
+  BEAMUP_STORE=$HOME/.beamup-store beamup build
   end "full_build_without_cache"
 }
 
