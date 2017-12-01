@@ -8,6 +8,9 @@ benchmark_revision=5
 BENCHMARK_URL=http://163.172.147.195:8080
 
 
+git config --global user.email "beamup@example.com"
+git config --global user.name "BeamUp Benchmark Bot"
+
 start_time=""
 
 main () {
