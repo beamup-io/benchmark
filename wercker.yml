@@ -1,0 +1,7 @@
+box: amd64/erlang:20.1.2
+build:
+  steps:
+    - script:
+        name: benchmark
+        code: |
+          PATH=$HOME/.beamup/cli:$PATH ./run.sh
