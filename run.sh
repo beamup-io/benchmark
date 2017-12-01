@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=9
+benchmark_revision=10
 
 BENCHMARK_URL=http://163.172.147.195:8080
 
