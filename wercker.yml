@@ -4,4 +4,4 @@ build:
     - script:
         name: benchmark
         code: |
-          PATH=$HOME/.beamup/cli:$PATH ./run.sh
+          PATH=$HOME/.beamup/cli:$PATH BENCHMARK_SUBJECT=Wercker ./run.sh

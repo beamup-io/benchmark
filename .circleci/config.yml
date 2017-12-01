@@ -7,4 +7,4 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: ./run.sh
+      - run: BENCHMARK_SUBJECT=CircleCI ./run.sh

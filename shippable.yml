@@ -6,4 +6,4 @@ build:
     options: "-e HOME=/root"
 
   ci:
-    - PATH=$HOME/.beamup/cli:$PATH ./run.sh
+    - PATH=$HOME/.beamup/cli:$PATH BENCHMARK_SUBJECT=Shippable ./run.sh
