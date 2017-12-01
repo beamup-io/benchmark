@@ -1,7 +1,7 @@
 build:
   pre_ci_boot:
-    image_name: amd64/erlang:20.1.2
-    image_tag: latest
+    image_name: amd64/erlang
+    image_tag: 20.1.2
     pull: true
     options: "-e HOME=/root"
 
