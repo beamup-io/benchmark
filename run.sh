@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=22
+benchmark_revision=23
 
 BENCHMARK_URL=http://163.172.147.195:8080
 
@@ -18,6 +18,9 @@ main () {
   start "install"
   curl https://get.beamup.io/install | /bin/sh
   end "install"
+
+  mkdir $HOME/beamup-benchmarks
+  cd $HOME/beamup-benchmarks
 
   echo "### Creating project scaffold"
   beamup new test_erlang_one
