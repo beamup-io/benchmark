@@ -28,7 +28,7 @@ main () {
 
   echo "### Building full release, without cache"
   start "full_build_without_cache"
-  BEAMUP_STORE=$HOME/.beamup-store beamup build
+  BEAMUP_STORE=$HOME/beamup-store beamup build
   end "full_build_without_cache"
 
   echo "### Making a change to the project"
@@ -52,17 +52,17 @@ EOF
 
   echo "### Building upgrade release, with cache"
   start "upgrade_build_with_cache"
-  BEAMUP_STORE=$HOME/.beamup-store beamup build
+  BEAMUP_STORE=$HOME/beamup-store beamup build
   end "upgrade_build_with_cache"
 
   echo "### Clearing cache"
-  rm -rf $HOME/.beamup-store
+  rm -rf $HOME/beamup-store
 
   # TODO: Why is this failing?
-  # echo "### Building upgrade release, without cache"
-  # start "upgrade_build_without_cache"
-  # BEAMUP_STORE=$HOME/.beamup-store beamup build
-  # end "upgrade_build_without_cache"
+  echo "### Building upgrade release, without cache"
+  start "upgrade_build_without_cache"
+  BEAMUP_STORE=$HOME/beamup-store beamup build
+  end "upgrade_build_without_cache"
 }
 
 # Private
