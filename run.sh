@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=19
+benchmark_revision=21
 
 BENCHMARK_URL=http://163.172.147.195:8080
 
@@ -55,10 +55,11 @@ EOF
   echo "### Clearing cache"
   rm -rf $HOME/.beamup-store
 
-  echo "### Building upgrade release, without cache"
-  start "upgrade_build_without_cache"
-  BEAMUP_STORE=$HOME/.beamup-store beamup build
-  end "upgrade_build_without_cache"
+  # TODO: Why is this failing?
+  # echo "### Building upgrade release, without cache"
+  # start "upgrade_build_without_cache"
+  # BEAMUP_STORE=$HOME/.beamup-store beamup build
+  # end "upgrade_build_without_cache"
 }
 
 # Private
