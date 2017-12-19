@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=32
+benchmark_revision=33
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
