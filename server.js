@@ -13,11 +13,16 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/', (req, res) => {
   handle(req.body)
-  res.send('ok\n')
+  res.end('ok\n')
 })
 
 app.get('/', (req, res) => {
   res.end(JSON.stringify(state, null, 2))
+})
+
+app.delete('/', (req, res) => {
+  state = []
+  res.end('ok\n')
 })
 
 app.listen(PORT, () =>
