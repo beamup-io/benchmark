@@ -3,10 +3,9 @@
 set -e
 
 # Increment before each push
-benchmark_revision=29
+benchmark_revision=30
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
-
 
 git config --global user.email "beamup@example.com"
 git config --global user.name "BeamUp Benchmark Bot"
@@ -29,17 +28,12 @@ main () {
 
   # Step 2: Initial, cache disabled
   echo "### Building full release, without cache"
-  pwd
-  ls
-
   start "2_full_build_without_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "2_full_build_without_cache"
 
   # Step 3: Initial, cache enabled
   echo "### Building full release, without cache"
-  pwd
-  ls
   start "3_full_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "3_full_build_with_cache"
@@ -66,8 +60,6 @@ EOF
 
   # Step 4: Upgrade, cache enabled
   echo "### Building upgrade release, with cache"
-  pwd
-  ls
   start "4_upgrade_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "4_upgrade_build_with_cache"
@@ -77,8 +69,6 @@ EOF
   echo "### Clearing cache"
   rm -rf $HOME/beamup-store
   echo "### Building upgrade release, without cache"
-  pwd
-  ls
   start "5_upgrade_build_without_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "5_upgrade_build_without_cache"

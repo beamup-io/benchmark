@@ -19,7 +19,8 @@ jobs:
         # Cache image to be comparable with builds
         # running in container
         - docker pull amd64/erlang:20.1.2
-        - docker run --rm --init -ti amd64/erlang:20.1.2 echo "hello from the container"
+        - docker run --rm --init -ti amd64/erlang:20.1.2 echo "hello from the erlang container"
+        - beamup echo "hello from the beamup container"
         - ./run.sh
 
 install:
