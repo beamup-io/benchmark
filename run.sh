@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=25
+benchmark_revision=26
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
@@ -62,21 +62,26 @@ EOF
 
   git add .
   git commit -m 'Add hello joe log output'
+  git status
 
   # Step 4: Upgrade, cache enabled
   echo "### Building upgrade release, with cache"
+  pwd
+  ls
   start "4_upgrade_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "4_upgrade_build_with_cache"
 
-  # # Step 5: Upgrade, cache disabled
-  # # TODO: Why is this failing?
-  # echo "### Clearing cache"
-  # rm -rf $HOME/beamup-store
-  # echo "### Building upgrade release, without cache"
-  # start "upgrade_build_without_cache"
-  # BEAMUP_STORE=$HOME/beamup-store beamup build
-  # end "upgrade_build_without_cache"
+  # Step 5: Upgrade, cache disabled
+  # TODO: Why is this failing?
+  echo "### Clearing cache"
+  rm -rf $HOME/beamup-store
+  echo "### Building upgrade release, without cache"
+  pwd
+  ls
+  start "5_upgrade_build_without_cache"
+  BEAMUP_STORE=$HOME/beamup-store beamup build
+  end "5_upgrade_build_without_cache"
 }
 
 # Private
