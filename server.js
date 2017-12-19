@@ -16,6 +16,10 @@ app.post('/', (req, res) => {
   res.send('ok\n')
 })
 
+app.get('/', (req, res) => {
+  res.end(JSON.stringify(state, null, 2))
+})
+
 app.listen(PORT, () =>
   console.log('Listening on', PORT)
 )

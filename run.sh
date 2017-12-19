@@ -3,9 +3,9 @@
 set -e
 
 # Increment before each push
-benchmark_revision=23
+benchmark_revision=24
 
-BENCHMARK_URL=http://163.172.147.195:8080
+BENCHMARK_URL=https://beamup-benchmark.now.sh
 
 
 git config --global user.email "beamup@example.com"
@@ -14,6 +14,7 @@ git config --global user.name "BeamUp Benchmark Bot"
 start_time=""
 
 main () {
+  # Step 1: Install
   echo "### Installing BeamUp"
   start "install"
   curl https://get.beamup.io/install | /bin/sh
@@ -26,10 +27,17 @@ main () {
   beamup new test_erlang_one
   cd test_erlang_one
 
+  # Step 2: Initial, cache disabled
   echo "### Building full release, without cache"
   start "full_build_without_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "full_build_without_cache"
+
+  # Step 3: Initial, cache enabled
+  echo "### Building full release, without cache"
+  start "full_build_with_cache"
+  BEAMUP_STORE=$HOME/beamup-store beamup build
+  end "full_build_with_cache"
 
   echo "### Making a change to the project"
   cat << EOF > ./apps/test_erlang_one/src/test_erlang_one_app.erl
@@ -50,19 +58,20 @@ EOF
   git add .
   git commit -m 'Add hello joe log output'
 
+  # Step 4: Upgrade, cache enabled
   echo "### Building upgrade release, with cache"
   start "upgrade_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
   end "upgrade_build_with_cache"
 
-  echo "### Clearing cache"
-  rm -rf $HOME/beamup-store
-
-  # TODO: Why is this failing?
-  echo "### Building upgrade release, without cache"
-  start "upgrade_build_without_cache"
-  BEAMUP_STORE=$HOME/beamup-store beamup build
-  end "upgrade_build_without_cache"
+  # # Step 5: Upgrade, cache disabled
+  # # TODO: Why is this failing?
+  # echo "### Clearing cache"
+  # rm -rf $HOME/beamup-store
+  # echo "### Building upgrade release, without cache"
+  # start "upgrade_build_without_cache"
+  # BEAMUP_STORE=$HOME/beamup-store beamup build
+  # end "upgrade_build_without_cache"
 }
 
 # Private
