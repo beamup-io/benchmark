@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=33
+benchmark_revision=34
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
@@ -72,9 +72,14 @@ EOF
   end "4_upgrade_build_with_cache"
 
   # Step 5: Upgrade, cache disabled
-  # TODO: Why is this failing?
   echo "### Clearing cache"
-  rm -rf $HOME/beamup-store
+  rm -rf $HOME/.beamup/tmp
+  rm -rf "/tmp/beamup/cli/_build"
+  rm -rf "$HOME/.beamup/tmp/cache/elixir"
+  rm -rf "$HOME/.mix"
+  rm -rf "$HOME/.cache/rebar3"
+  rm -rf "$HOME/.cache/rebar3"
+
   echo "### Building upgrade release, without cache"
   start "5_upgrade_build_without_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
