@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=31
+benchmark_revision=32
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
@@ -22,6 +22,8 @@ main () {
   mkdir $HOME/beamup-benchmarks
   cd $HOME/beamup-benchmarks
 
+  echo "DEBUG 0"
+  /bin/sh -c "beamup selftest"
   echo "DEBUG 1"
   beamup selftest
   echo "DEBUG 2"
