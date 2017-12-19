@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=24
+benchmark_revision=25
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
@@ -16,9 +16,9 @@ start_time=""
 main () {
   # Step 1: Install
   echo "### Installing BeamUp"
-  start "install"
+  start "1_install"
   curl https://get.beamup.io/install | /bin/sh
-  end "install"
+  end "1_install"
 
   mkdir $HOME/beamup-benchmarks
   cd $HOME/beamup-benchmarks
@@ -29,15 +29,20 @@ main () {
 
   # Step 2: Initial, cache disabled
   echo "### Building full release, without cache"
-  start "full_build_without_cache"
+  pwd
+  ls
+
+  start "2_full_build_without_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
-  end "full_build_without_cache"
+  end "2_full_build_without_cache"
 
   # Step 3: Initial, cache enabled
   echo "### Building full release, without cache"
-  start "full_build_with_cache"
+  pwd
+  ls
+  start "3_full_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
-  end "full_build_with_cache"
+  end "3_full_build_with_cache"
 
   echo "### Making a change to the project"
   cat << EOF > ./apps/test_erlang_one/src/test_erlang_one_app.erl
@@ -60,9 +65,9 @@ EOF
 
   # Step 4: Upgrade, cache enabled
   echo "### Building upgrade release, with cache"
-  start "upgrade_build_with_cache"
+  start "4_upgrade_build_with_cache"
   BEAMUP_STORE=$HOME/beamup-store beamup build
-  end "upgrade_build_with_cache"
+  end "4_upgrade_build_with_cache"
 
   # # Step 5: Upgrade, cache disabled
   # # TODO: Why is this failing?
