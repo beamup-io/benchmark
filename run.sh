@@ -3,7 +3,7 @@
 set -e
 
 # Increment before each push
-benchmark_revision=35
+benchmark_revision=36
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
@@ -73,12 +73,11 @@ EOF
 
   # Step 5: Upgrade, cache disabled
   echo "### Clearing cache"
-  rm -rf $HOME/.beamup/tmp
-  rm -rf "/tmp/beamup/cli/_build"
-  rm -rf "$HOME/.beamup/tmp/cache/elixir"
-  rm -rf "$HOME/.mix"
-  rm -rf "$HOME/.cache/rebar3"
-  rm -rf "$HOME/.cache/rebar3"
+  rm_rf "$HOME/.beamup/tmp"
+  rm_rf "/tmp/beamup/cli/_build"
+  rm_rf "$HOME/.beamup/tmp/cache/elixir"
+  rm_rf "$HOME/.mix"
+  rm_rf "$HOME/.cache/rebar3"
 
   echo "### Building upgrade release, without cache"
   start "5_upgrade_build_without_cache"
@@ -87,6 +86,12 @@ EOF
 }
 
 # Private
+
+rm_rf () {
+  chmod 777 $(dirname "$1") || true
+  chmod 777 "$1" || true
+  rm -rf "$1" || true
+}
 
 start () {
   echo "### Start '$1'"
