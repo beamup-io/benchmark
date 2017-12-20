@@ -3,7 +3,8 @@
 set -e
 
 # Increment before each push
-benchmark_revision=$(cat ./benchmark_revision)
+benchmark_dir=$(dirname "$(readlink -f "$0")")
+benchmark_revision=$(cat $benchmark_dir/benchmark_revision)
 
 BENCHMARK_URL=https://beamup-benchmark.now.sh
 
